@@ -36,7 +36,7 @@ StegLens is a graduation project that allows users to securely **hide and extrac
 - 👨‍💻 **Khaled AlSheikh**  
 - 👩‍💻 **Lara AlNsour**  
 
-**Supervisor:** Eng. Hazem Abu-Adaiq  
+**Supervisor:** Ins. Hazem Abu-Adaiq  
 **University:** Applied Science Private University
 
 ---
