@@ -3,8 +3,8 @@ from flask import Flask, request, jsonify, make_response, send_from_directory
 import os
 import uuid
 from flask_cors import CORS
-from Steganography_tool import hide_message, reveal_message
-from Cryptography_tool import encrypt, decrypt
+from Back_End.Steganography_tool import hide_message, reveal_message
+from Back_End.Cryptography_tool import encrypt, decrypt
 
 app = Flask(__name__)
 CORS(app)
