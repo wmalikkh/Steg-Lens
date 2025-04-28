@@ -1,5 +1,5 @@
-from Steganography_tool import hide_message, reveal_message
-from Cryptography_tool import encrypt, decrypt
+from Back_End.Steganography_tool import hide_message, reveal_message
+from Back_End.Cryptography_tool import encrypt, decrypt
 
 def main():
     print("\n🔐 Steg-Lens CLI")
