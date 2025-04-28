@@ -1,8 +1,15 @@
-📦 StegLens 0.1
+📦 StegLens 0.2 – Installation & Usage Instructions
+🛠️ How to Use:
+Download and extract the ZIP file.
 
-How to use:
-1. Extract this ZIP file
-2. Double-click "Steglens.exe"
-3. Your browser will open the app automatically
+Open the extracted StegLens-0.2 folder.
 
-No installation required ✅
+Navigate to the build folder inside.
+
+Double-click StegLens.exe to launch the application.
+
+Wait a few seconds – your web browser will automatically open it.
+
+✅ No installation required.
+✅ Works 100% offline on your local machine.
+✅ Secure encryption, hiding, and extraction.

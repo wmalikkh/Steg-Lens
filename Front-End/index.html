@@ -3,107 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StegLens - Secure Text Hiding</title>
+  <title>Steg-Lens | Hide & Reveal Messages</title>
   <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div class="container">
+    <img src="image.png.png" alt="Steg-Lens Logo" style="width: 80px; display: block; margin: 0 auto 1rem auto;">
+    <h1>Steg-Lens</h1>
+    <p class="subtitle">Encrypt, hide, reveal & decrypt messages inside images.</p>
 
-  <!-- 🌗 Mode Toggle Button -->
-  <div class="mode-toggle">
-    <button id="toggleModeBtn">🌙 Toggle Mode</button>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <div>
+        <button onclick="setMode('encode')">🔒 Encode</button>
+        <button onclick="setMode('decode')">🔍 Decode</button>
+      </div>
+      <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+    </div>
+
+    <!-- Encode Section -->
+    <div id="encodeSection" style="display: none;">
+      <section class="card">
+        <h2>🔐 Encrypt Message (Optional)</h2>
+        <input type="text" id="textInput" placeholder="Enter your message" />
+        <input type="text" id="keyInput" placeholder="Enter encryption key if selected" />
+        <div class="options">
+          <label><input type="radio" name="algo" value="none" checked /> No Encryption</label>
+          <label><input type="radio" name="algo" value="AES-128" /> AES-128</label>
+          <label><input type="radio" name="algo" value="3DES" /> 3DES</label>
+        </div>
+        <button id="encryptBtn">Encrypt or Use Message</button>
+      </section>
+
+      <section class="card">
+        <h2>🖼️ Hide Message in Image</h2>
+        <input type="file" id="imageInput" accept="image/*" />
+        <input type="hidden" id="messageInput" />
+        <button id="hideBtn">Hide in Image</button>
+        <img id="previewImage" style="display:none; max-width:100%; margin-top:10px; border-radius:12px;" />
+        <button id="downloadBtn" style="display:none">⬇️ Download Image</button>
+      </section>
+    </div>
+
+    <!-- Decode Section -->
+    <div id="decodeSection" style="display: none;">
+      <section class="card">
+        <h2>🔍 Extract Hidden Message</h2>
+        <input type="file" id="extractInput" accept="image/*" />
+        <button id="extractBtn">Extract Message</button>
+        <p id="extractedResult"></p>
+      </section>
+
+      <section class="card">
+        <h2>🔓 Decrypt Extracted Message</h2>
+        <input type="text" id="textToDecrypt" placeholder="Paste encrypted text here" />
+        <input type="text" id="keyToDecrypt" placeholder="Enter decryption key" />
+        <div class="options">
+          <label><input type="radio" name="algo-decrypt" value="AES-128" checked /> AES-128</label>
+          <label><input type="radio" name="algo-decrypt" value="3DES" /> 3DES</label>
+        </div>
+        <button id="decryptBtn">Decrypt</button>
+        <p id="decryptedResult"></p>
+      </section>
+    </div>
+
+    <div id="toast" class="toast"></div>
   </div>
 
-  <!-- Navigation Bar -->
-  <nav>
-    <ul>
-      <li><a href="#" onclick="toggleSection('home')">Home</a></li>
-      <li><a href="#" onclick="toggleSection('about')">About</a></li>
-      <li><a href="#" onclick="toggleSection('contact')">Contact</a></li>
-    </ul>
-  </nav>
+  <script>
+    function setMode(mode) {
+      document.getElementById("encodeSection").style.display = mode === 'encode' ? 'block' : 'none';
+      document.getElementById("decodeSection").style.display = mode === 'decode' ? 'block' : 'none';
+    }
 
-  <!-- Header with Logo -->
-  <header class="hero fade-in delay-1">
-    <div class="logo-wrapper">
-      <img src="image.png.png" alt="Logo" class="logo" />
-    </div>
-    <h1>StegLens</h1>
-    <p>Encrypt and Hide Text Securely Inside Images</p>
-  </header>
-
-  <!-- Main Section -->
-  <main class="container fade-in delay-2" id="home">
-    <section class="card">
-      <h2>1. Enter Text & Choose Encryption</h2>
-      <textarea id="textInput" placeholder="Write your secret text..."></textarea>
-      <select id="encryptionType">
-        <option value="aes">AES-128</option>
-        <option value="3des">3DES</option>
-      </select>
-      <div class="btn-group">
-        <button id="encryptBtn">🔐 Encrypt</button>
-        <button id="decryptBtn">🔓 Decrypt</button>
-      </div>
-      <!-- تم إخفاء مربع الإدخال الإضافي -->
-      <div id="decryptedOutput" style="display:none" class="card">
-        <pre id="decryptedText"></pre>
-        <button id="copyDecryptedBtn">📋 Copy Decrypted Text</button>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>2. Select or Drag Image</h2>
-      <div class="drag-drop-area" id="dragDropArea" title="Only PNG or JPEG. Max size: 10MB">🖼️ Drag and Drop Image Here</div>
-      <input type="file" id="imageInput" accept="image/*" title="Only PNG or JPEG. Max size: 10MB" />
-      <div id="imageReady" style="display:none">✅ Image loaded</div>
-      <img id="previewImage" class="preview" style="display:none;" />
-    </section>
-
-    <section class="card">
-      <h2>3. Steganography Actions</h2>
-      <div class="btn-group">
-        <button id="hideBtn">🖼️ Hide Encrypted Text</button>
-        <button id="extractBtn" style="display:none">🔍 Extract Hidden Text</button>
-      </div>
-      <button id="downloadBtn" style="display:none">📥 Download Image</button>
-    </section>
-
-    <section id="errorBox" class="error">
-      <span id="errorMsg"></span>
-    </section>
-  </main>
-
-  <!-- About Section -->
-  <section id="about" class="info-section fade-in delay-3">
-    <h2>About StegLens</h2>
-    <p><strong>StegLens</strong> is a modern steganography tool that lets you hide encrypted messages inside images. It supports multi-layered hiding for enhanced security.</p>
-    <h3>How to Use:</h3>
-    <ol>
-      <li>Enter your secret text.</li>
-      <li>Select encryption type (AES-128 or 3DES).</li>
-      <li>Click "Encrypt".</li>
-      <li>Upload or drag an image (PNG or JPEG, ≤ 10MB).</li>
-      <li>Click "Hide Encrypted Text" to embed the message.</li>
-      <li>Use "Extract" then "Decrypt" to retrieve it later.</li>
-    </ol>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="info-section fade-in delay-3">
-    <h2>Contact Us</h2>
-    <p>If you have any questions, feel free to reach us:</p>
-    <p><a href="mailto:support@steglens.com">support@steglens.com</a></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 StegLens. All rights reserved. | Built for Cyber Security Projects</p>
-  </footer>
-  <section class="card" id="resultBox" style="display: none;">
-    <h3>🔎 Result</h3>
-    <textarea id="resultOutput" readonly rows="6" placeholder="Extracted or decrypted message will appear here..."></textarea>
-  </section>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+  </script>
+  <script src="script.js"></script>
 </body>
 </html>
