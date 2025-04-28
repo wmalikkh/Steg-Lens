@@ -7,25 +7,11 @@ StegLens is a graduation project that allows users to securely **hide and extrac
 ## 🚀 Features
 
 - 🧠 **AES-128 & 3DES Encryption**
-- 🖼️ **PNG & JPG Image Support**
+- 🖼️ **PNG & JPG & GIF Image Support**
 - 💬 **Hide and Extract Secret Messages**
 - 🌐 **User-Friendly Web Interface (HTML/CSS/JS)**
 - ⚙️ **Python Flask Backend**
-- 🧪 **GIF Support Coming Soon**
 - 🔒 Local processing – no cloud storage
-
----
-
-## 📂 Folder Structure
-
-```
-📁 StegLens/
-├── 📁 Front-End/         # HTML, CSS, JS files
-├── 📁 Back-End/          # Python Flask + Logic scripts
-├── launcher.py           # Connects everything (entry point)
-├── stegicon.ico          # App icon
-├── Steglens.exe          # Compiled standalone app
-```
 
 ---
 
