@@ -11,17 +11,17 @@ body {
     border-color: white;
   }
 
-navbar {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background: #d3d3d3;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background: #d3d3d3; /* clean white navbar */
     position: sticky;
     top: 0;
     z-index: 1000;
-  }
+}
+
 
   
   .navbar .logo {
