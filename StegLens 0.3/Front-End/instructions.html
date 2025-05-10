@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="layout.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How It Works | StegLens</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dcd4fa;
+      color: #623ce6;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .main h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: black;
+    }
+
+    .main p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 3rem;
+    }
+
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .step-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(98, 60, 230, 0.12);
+      padding: 2rem;
+      width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 22px rgba(98, 60, 230, 0.2);
+    }
+
+    .step-card h3 {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      color: #623ce6;
+    }
+
+    .step-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: #888;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      .flow {
+        flex-direction: column;
+      }
+      .arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="SLlogo.png" alt="StegLens Logo">
+      StegLens
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <div class="main">
+    <div class="tag">Simple Process</div>
+    <h1>How StegLens Works</h1>
+    <p>Our process is secure, simple, and completely private.</p>
+
+    <div class="flow">
+      <div class="step-card">
+        <div>📝</div>
+        <h3>Create Your Message</h3>
+        <p>Write the secret text or info you want to hide securely.</p>
+      </div>
+      <div class="arrow">➡️</div>
+      <div class="step-card">
+        <div>🖼️</div>
+        <h3>Select an Image</h3>
+        <p>Choose any image (PNG, JPG, or GIF) to carry your message.</p>
+      </div>
+      <div class="arrow">➡️</div>
+      <div class="step-card">
+        <div>🔒</div>
+        <h3>Choose Encryption</h3>
+        <p>Select from <strong>AES-128</strong>, <strong>3DES</strong>, or no encryption.</p>
+      </div>
+      <div class="arrow">➡️</div>
+      <div class="step-card">
+        <div>🔁</div>
+        <h3>Multi-Layering</h3>
+        <p>Choose 1 to 3 layers to increase message depth and stealth.</p>
+      </div>
+      <div class="arrow">➡️</div>
+      <div class="step-card">
+        <div>📥</div>
+        <h3>Encode & Download</h3>
+        <p>Embed the message and download the new image.</p>
+      </div>
+      <div class="arrow">➡️</div>
+      <div class="step-card">
+        <div>🔓</div>
+        <h3>Decode Anytime</h3>
+        <p>Upload and extract your message with the correct key.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    📧 Contact: <a href="mailto:steglensco@gmail.com">steglensco@gmail.com</a><br />
+    🔗 GitHub: <a href="https://github.com/steglens/Steg-Lens.git" target="_blank">https://github.com/steglens/Steg-Lens.git</a><br />
+    🎓 This is a graduation project.<br />
+    &copy; 2025 StegLens. All rights reserved.
+  </footer>
+</body>
+</html>

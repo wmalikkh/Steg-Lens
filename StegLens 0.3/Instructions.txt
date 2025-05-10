@@ -1,0 +1,6 @@
+📦 StegLens – Online Web Application
+
+✅ Visit https://steglens.online
+✅ No installation needed
+✅ Works securely online from any device
+✅ Powered by Flask backend + encrypted steganography
