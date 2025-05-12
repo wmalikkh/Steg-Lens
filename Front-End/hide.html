@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="layout.css" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hide Message</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    .card {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 3rem;
+      border-radius: 16px;
+      background: #623ce6;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      color: white;
+    }
+
+    .card input, .card select {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background-color: white;
+      color: black;
+    }
+
+    .card button {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #dropzone {
+      border: 2px dashed white;
+      background: white;
+      color: black;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #previewImage {
+      max-width: 100%;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    #downloadBtn {
+      background-color: #00f0ff;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="SLlogo.png" alt="StegLens Logo">
+      <span>StegLens</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="instructions.html">How It Works</a></li>
+    </ul>
+  </nav>
+
+  <div class="card">
+    <h2>🔐 Hide a Message</h2>
+    <div id="dropzone">📁 Drop image here or click to upload</div>
+    <input id="imageInput" type="file" accept="image/*" style="display:none;" />
+    <img id="previewImage" />
+
+    <!-- ✅ normal text input -->
+    <input id="textInput" type="text" placeholder="Write your message or choose a .txt file" />
+    <!-- ✅ new: text file input -->
+    <input id="textFileInput" type="file" accept=".txt" />
+    <input id="messageInput" type="hidden" />
+
+    <label for="layerSelect">Steganography Layers</label>
+    <select id="layerSelect">
+      <option value="1">1 layer</option>
+      <option value="2">2 layers</option>
+      <option value="3">3 layers</option>
+    </select>
+
+    <label for="encryptionSelect">Encryption</label>
+    <select id="encryptionSelect">
+      <option value="none">None</option>
+      <option value="AES-128">AES-128</option>
+      <option value="3DES">3DES</option>
+    </select>
+
+    <input id="keyInput" type="text" placeholder="Enter encryption key"/>
+
+    <button id="encryptAndHideBtn">Encrypt & Hide</button>
+    <button id="downloadBtn" style="display:none;">⬇️ Download Image</button>
+  </div>
+
+  <script src="script.js"></script>
+  
+  <footer>
+    📧 Contact: <a href="mailto:steglensco@gmail.com">steglensco@gmail.com</a>
+    🔗 GitHub: <a href="https://github.com/steglens/Steg-Lens.git" target="_blank">https://github.com/steglens/Steg-Lens.git</a><br />
+    🎓 This is a graduation project.<br />
+    &copy; 2025 StegLens. All rights reserved.
+  </footer>
+</body>
+</html>
