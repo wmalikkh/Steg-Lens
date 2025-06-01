@@ -1,8 +1,0 @@
-📦 StegLens 0.1
-
-How to use:
-1. Extract this ZIP file
-2. Double-click "Steglens.exe"
-3. Your browser will open the app automatically
-
-No installation required ✅
