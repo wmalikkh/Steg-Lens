@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="layout.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reveal Message</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/topbar@1.0.1/topbar.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      background-color: #d9e8fb;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      font-size: 25px;
+      color: #2400ff;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #007eff;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    .navbar {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 20px;
+      background-color: #d9e8fb;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .menu-icon {
+      position: absolute;
+      left: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2400ff;
+    }
+
+    .card {
+      border: 2px solid #007eff;
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 3rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card input,
+    .card select {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 2px solid #007eff;
+      font-size: 1rem;
+      background-color: white;
+      color: black;
+    }
+
+    .card button {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 2px solid #007eff;
+      background: #007eff;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #dropzone {
+      border: 2px dashed #007eff;
+      background: white;
+      color: black;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #revealPreview {
+      max-width: 100%;
+      margin-bottom: 1rem;
+      display: none;
+      border-radius: 12px;
+    }
+
+    #changeImageBtn {
+      display: none;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem 1rem;
+      background: white;
+      border: 2px dashed #007eff;
+      color: #007eff;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #toast {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: crimson;
+      color: white;
+    }
+
+    #extractedResult,
+    #decryptedResult {
+      word-break: break-word;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<script>
+  function toggleNav() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("show");
+  }
+</script>
+<body>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="index.html">Home</a>
+    <a href="instructions.html">How It Works</a>
+  </div>
+
+  <nav class="navbar">
+  <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+  <a href="index.html" class="logo-container">
+    <img src="SLlogo.png" alt="StegLens Logo">
+    <span class="logo-text">StegLens</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="instructions.html">How It Works</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</nav>
+
+  <div id="main">
+    <div class="card">
+      <h2>🔓 Reveal a Message</h2>
+
+      <div id="dropzone">📁 Drop image here or click to upload</div>
+      <input id="extractInput" type="file" accept="image/*" style="display:none;" />
+      <img id="revealPreview" />
+      <button id="changeImageBtn">🔄 Change Image</button>
+
+      <button id="extractBtn">Extract Message</button>
+      <p id="extractedResult"></p>
+
+      <h3>Optional Decryption</h3>
+      <input id="textToDecrypt" type="text" placeholder="Extracted message" />
+      <input id="keyToDecrypt" type="text" placeholder="Decryption key" />
+
+      <label for="decryptAlgo">Encryption Used</label>
+      <select id="decryptAlgo">
+        <option value="AES-128">AES-128</option>
+        <option value="3DES">3DES</option>
+      </select>
+
+      <button id="decryptBtn">Decrypt</button>
+      <p id="decryptedResult"></p>
+
+      <div id="toast" class="toast"></div>
+    </div>
+  </div>
+
+  <!-- ✅ Navigation Control -->
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+
+  <!-- ✅ Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topbar@1.0.1/topbar.min.js"></script>
+  <script>
+    const LoadingBar = {
+      start: () => topbar.show(),
+      stop: () => topbar.hide()
+    };
+  </script>
+
+  <!-- ✅ Main Script -->
+  <script src="script.js"></script>
+</body>
+
+</html>

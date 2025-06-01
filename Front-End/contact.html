@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | StegLens</title>
+  <link rel="stylesheet" href="layout.css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+  <style>
+    /* Styles specific to the contact section */
+    .contact-container {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      background: white;
+      color: black;
+    }
+
+    .contact-container h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #2400ff;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 1.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .contact-item .icon {
+      font-size: 1.5rem;
+    }
+
+    .contact-item a {
+      color: #2400ff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+    <a href="index.html" class="logo-container">
+      <img src="SLlogo.png" alt="StegLens Logo" />
+      <span class="logo-text">StegLens</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="instructions.html">How It Works</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon">📧</span>
+        <span>Contact: steglensco@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">🔗</span>
+        <span>
+          GitHub:
+          <a href="https://github.com/steglens/Steg-Lens.git" target="_blank">
+            https://github.com/steglens/Steg-Lens.git
+          </a>
+        </span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">🎓</span>
+        <span>This is a graduation project.</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleNav() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
