@@ -1,0 +1,9 @@
+📦 StegLens – Online Web Application
+
+✅ Visit https://steglens.online
+✅ No installation needed
+✅ Works securely online from any device
+✅ Drag & Drop image selection
+✅ Type message OR upload a .txt file
+✅ Optional encryption (AES-128 / 3DES)
+✅ Powered by Flask backend + encrypted steganography
