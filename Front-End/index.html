@@ -1,109 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="layout.css" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StegLens - Secure Text Hiding</title>
-  <link rel="stylesheet" href="styles.css" />
-  <script defer src="script.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>StegLens | Hide & Reveal</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+  <!-- SweetAlert2 & LoadingBar Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/topbar@1.0.1/topbar.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+      margin: 0;
+      padding-bottom: 40px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background-color: #d9e8fb;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2400ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #2400ff;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(36, 0, 255, 0.1);
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #2400ff;
+    }
+
+    #main {
+      padding: 16px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .logo-main {
+      width: 210px;
+      height: 210px;
+      margin-bottom: 30px;
+    }
+
+    .title {
+      font-size: 64px;
+      font-weight: bold;
+      margin: 0 0 20px 0;
+    }
+
+    .title span:first-child {
+      color: #2400ff;
+    }
+
+    .title span:last-child {
+      color: white;
+      background-color: #007eff;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: 280px;
+      padding: 35px 25px;
+      border-radius: 22px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s;
+      font-size: 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .hide-card {
+      background-color: #2400ff;
+      color: white;
+    }
+
+    .reveal-card {
+      background-color: #007eff;
+      color: white;
+      border: 2px solid #2400ff;
+    }
+
+    .card h3 {
+      margin: 12px 0;
+      font-size: 22px;
+    }
+
+    .card p {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .card span {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    /* Marquee styles */
+    .marquee-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px; /* ارتفاع الشريط */
+  background: #2400ff;
+  overflow: hidden;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-content {
+  width: 100%;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  width: max-content;
+}
+
+.marquee-logo {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  filter: brightness(1.3);
+  flex-shrink: 0;
+}
+
+.marquee-text {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 40px; /* نفس ارتفاع الشريط */
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 768px) {
+  .marquee-container {
+    height: 35px;
+  }
+  .marquee-text {
+    font-size: 0.9rem;
+    line-height: 35px;
+  }
+  .marquee-logo {
+    height: 20px;
+    width: 20px;
+  }
+}
+  </style>
 </head>
+
 <body>
-
-  <!-- 🌗 Mode Toggle Button -->
-  <div class="mode-toggle">
-    <button id="toggleModeBtn">🌙 Toggle Mode</button>
-  </div>
-
-  <!-- Navigation Bar -->
-  <nav>
-    <ul>
-      <li><a href="#" onclick="toggleSection('home')">Home</a></li>
-      <li><a href="#" onclick="toggleSection('about')">About</a></li>
-      <li><a href="#" onclick="toggleSection('contact')">Contact</a></li>
+  <nav class="navbar">
+    <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+    <a href="index.html" class="logo-container">
+      <img src="SLlogo.png" alt="StegLens Logo">
+      <span class="logo-text">StegLens</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="instructions.html">How It Works</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
     </ul>
   </nav>
 
-  <!-- Header with Logo -->
-  <header class="hero fade-in delay-1">
-    <div class="logo-wrapper">
-      <img src="image.png.png" alt="Logo" class="logo" />
+  <div id="main" class="container">
+    <img src="SLlogo.png" alt="StegLens Logo" class="logo-main">
+    <div class="title">
+      <span>Steg</span><span>Lens</span>
     </div>
-    <h1>StegLens</h1>
-    <p>Encrypt and Hide Text Securely Inside Images</p>
-  </header>
 
-  <!-- Main Section -->
-  <main class="container fade-in delay-2" id="home">
-    <section class="card">
-      <h2>1. Enter Text & Choose Encryption</h2>
-      <textarea id="textInput" placeholder="Write your secret text..."></textarea>
-      <select id="encryptionType">
-        <option value="aes">AES-128</option>
-        <option value="3des">3DES</option>
-      </select>
-      <div class="btn-group">
-        <button id="encryptBtn">🔐 Encrypt</button>
-        <button id="decryptBtn">🔓 Decrypt</button>
-      </div>
-      <!-- تم إخفاء مربع الإدخال الإضافي -->
-      <div id="decryptedOutput" style="display:none" class="card">
-        <pre id="decryptedText"></pre>
-        <button id="copyDecryptedBtn">📋 Copy Decrypted Text</button>
-      </div>
-    </section>
+    <div class="card-container">
+      <a href="hide.html" class="card hide-card">
+        <h3>🔐 Hide a Message</h3>
+        <p>Encrypt and embed your secret into an image.</p>
+        <span>Go to Hide</span>
+      </a>
 
-    <section class="card">
-      <h2>2. Select or Drag Image</h2>
-      <div class="drag-drop-area" id="dragDropArea" title="Only PNG or JPEG. Max size: 10MB">🖼️ Drag and Drop Image Here</div>
-      <input type="file" id="imageInput" accept="image/*" title="Only PNG or JPEG. Max size: 10MB" />
-      <div id="imageReady" style="display:none">✅ Image loaded</div>
-      <img id="previewImage" class="preview" style="display:none;" />
-    </section>
+      <a href="reveal.html" class="card reveal-card">
+        <h3>🔓 Reveal a Message</h3>
+        <p>Extract and decrypt hidden messages from images.</p>
+        <span>Go to Reveal</span>
+      </a>
+    </div>
+  </div>
 
-    <section class="card">
-      <h2>3. Steganography Actions</h2>
-      <div class="btn-group">
-        <button id="hideBtn">🖼️ Hide Encrypted Text</button>
-        <button id="extractBtn" style="display:none">🔍 Extract Hidden Text</button>
-      </div>
-      <button id="downloadBtn" style="display:none">📥 Download Image</button>
-    </section>
+  <!-- Moving marquee bar -->
+  <div class="marquee-container">
+  <div class="marquee-content">
+    <div class="marquee-inner">
+      <img src="SLlogo.png" alt="Logo" class="marquee-logo">
+      <span class="marquee-text">StegLens lets you securely hide and reveal encrypted messages inside images using smart, stylish steganography.</span>
+      <img src="SLlogo.png" alt="Logo" class="marquee-logo">
+    </div>
+  </div>
+</div>
+  <script>
+    function toggleNav() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+    }
+  </script>
 
-    <section id="errorBox" class="error">
-      <span id="errorMsg"></span>
-    </section>
-  </main>
-
-  <!-- About Section -->
-  <section id="about" class="info-section fade-in delay-3">
-    <h2>About StegLens</h2>
-    <p><strong>StegLens</strong> is a modern steganography tool that lets you hide encrypted messages inside images. It supports multi-layered hiding for enhanced security.</p>
-    <h3>How to Use:</h3>
-    <ol>
-      <li>Enter your secret text.</li>
-      <li>Select encryption type (AES-128 or 3DES).</li>
-      <li>Click "Encrypt".</li>
-      <li>Upload or drag an image (PNG or JPEG, ≤ 10MB).</li>
-      <li>Click "Hide Encrypted Text" to embed the message.</li>
-      <li>Use "Extract" then "Decrypt" to retrieve it later.</li>
-    </ol>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="info-section fade-in delay-3">
-    <h2>Contact Us</h2>
-    <p>If you have any questions, feel free to reach us:</p>
-    <p><a href="mailto:support@steglens.com">support@steglens.com</a></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 StegLens. All rights reserved. | Built for Cyber Security Projects</p>
-  </footer>
-  <section class="card" id="resultBox" style="display: none;">
-    <h3>🔎 Result</h3>
-    <textarea id="resultOutput" readonly rows="6" placeholder="Extracted or decrypted message will appear here..."></textarea>
-  </section>
+  <!-- SweetAlert2 & Topbar LoadingBar Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topbar@1.0.1/topbar.min.js"></script>
+  <script>
+    const LoadingBar = {
+      start: () => topbar.show(),
+      stop: () => topbar.hide()
+    };
+  </script>
 </body>
+
 </html>

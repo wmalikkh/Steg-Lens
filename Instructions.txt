@@ -1,8 +1,9 @@
-📦 StegLens 0.1
+📦 StegLens – Online Web Application
 
-How to use:
-1. Extract this ZIP file
-2. Double-click "Steglens.exe"
-3. Your browser will open the app automatically
-
-No installation required ✅
+✅ Visit https://steglens.online
+✅ No installation needed
+✅ Works securely online from any device
+✅ Drag & Drop image selection
+✅ Type message OR upload a .txt file
+✅ Optional encryption (AES-128 / 3DES)
+✅ Powered by Flask backend + encrypted steganography

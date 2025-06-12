@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="script.js"></script>
+
+  <link rel="stylesheet" href="layout.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | StegLens</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+      margin: 0;
+      padding-bottom: 40px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background-color: #d9e8fb;
+      
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2400ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #2400ff;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(36, 0, 255, 0.1);
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #2400ff;
+    }
+
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #d9e8fb;
+        padding: 20px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: 5rem auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .contact-item .icon {
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .contact-item a {
+      color: #007eff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="contact-page">
+  <nav class="navbar">
+    <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+    <a href="index.html" class="logo-container">
+      <img src="SLlogo.png" alt="StegLens Logo">
+      <span class="logo-text">StegLens</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="instructions.html">How It Works</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon">📧</span>
+        <span>Email: <strong>steglensco@gmail.com</strong></span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">🔗</span>
+        <span>GitHub:
+          <a href="https://github.com/steglens/Steg-Lens.git" target="_blank">
+            https://github.com/steglens/Steg-Lens.git
+          </a>
+        </span>
+      </div>
+      <div class="contact-item">
+        <span class="icon">🎓</span>
+        <span>This is a graduation project.</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleNav() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+    }
+  </script>
+</body>
+
+</html>

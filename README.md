@@ -1,52 +1,51 @@
-# 🔐 StegLens – Web-Based Steganography App
+# StegLens
 
-StegLens is a graduation project that allows users to securely **hide and extract encrypted messages** inside images using modern **steganography techniques** and strong encryption.
+StegLens is a graduation project that allows secure steganography by hiding encrypted text messages inside images (PNG, JPEG, GIF). It uses a Python Flask backend and a modern HTML/CSS/JS frontend.
 
----
+## 🌐 Live Demo
+[https://steglens.online](https://steglens.online)
 
-## 🚀 Features
+## 🎯 Features
+- Hide secret messages inside images
+- AES-128 and 3DES optional encryption
+- Multi-layer steganography (1-3 layers)
+- Type message manually OR upload a text file
+- Drag & drop image selection
+- Clean modern responsive interface
+- Works securely online from any device
 
-- 🧠 **AES-128 & 3DES Encryption**
-- 🖼️ **PNG & JPG Image Support**
-- 💬 **Hide and Extract Secret Messages**
-- 🌐 **User-Friendly Web Interface (HTML/CSS/JS)**
-- ⚙️ **Python Flask Backend**
-- 🧪 **GIF Support Coming Soon**
-- 🔒 Local processing – no cloud storage
-
----
-
-## 📂 Folder Structure
-
+## 🖥️ How to Run Locally
+1. Clone the repo:
 ```
-📁 StegLens/
-├── 📁 Front-End/         # HTML, CSS, JS files
-├── 📁 Back-End/          # Python Flask + Logic scripts
-├── launcher.py           # Connects everything (entry point)
-├── stegicon.ico          # App icon
-├── Steglens.exe          # Compiled standalone app
+git clone https://github.com/your-username/StegLens.git
+cd StegLens
 ```
+2. Create virtual environment (optional):
+```
+python -m venv venv
+source venv/bin/activate  # (Linux/macOS)
+venv\Scripts\activate   # (Windows)
+```
+3. Install requirements:
+```
+pip install -r requirements.txt
+```
+4. Run Flask app:
+```
+cd Back-End
+python App.py
+```
+5. Visit `http://127.0.0.1:5000` and test image + text file upload.
 
----
+## 🚀 Deployment
+Recommended: [https://render.com](https://render.com)
+- Add your GitHub repo
+- Set `build command: pip install -r requirements.txt`
+- Set `start command: gunicorn App:app`
+- Connect your domain `steglens.online`
 
-## 🧑‍💻 Development Team
+## 📋 License
 
-- 👩‍💼 **Gheed Altamimi** – Team Leader  
-- 👨‍💻 **Malik Khelfah**  
-- 👨‍💻 **Khaled AlSheikh**  
-- 👩‍💻 **Lara AlNsour**  
+This project is licensed under the **GNU General Public License v3.0**.
 
-**Supervisor:** Ins. Hazem Abu-Adaiq  
-**University:** Applied Science Private University
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](./LICENSE).
-
----
-
-## 📌 Status
-
-> **Note:** This project is still under active development. We apologize if some features are incomplete – feedback and suggestions are welcome!
+You are free to use, modify, and redistribute this software under the terms of the [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.html).
