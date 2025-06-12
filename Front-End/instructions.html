@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="layout.css" />
+  <meta charset="UTF-8" />
+<script src="script.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works | StegLens</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Lato", sans-serif;
+    }
+      /* Navbar styles */
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background-color: #d9e8fb;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #2400ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      color: #2400ff;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(36, 0, 255, 0.1);
+    }
+
+    .menu-icon {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #2400ff;
+    }
+
+    /* Responsive navbar */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #d9e8fb;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    
+    /* ✅ Remove underline from logo link */
+    .logo-container,
+    .logo-container * {
+      text-decoration: none;
+    }
+
+    #main {
+      transition: margin-left .1s;
+      padding: 16px;
+    }
+
+    .main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1rem;
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #d9e8fb;
+      color: #2400ff;
+      font-weight: bold;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .main h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: black;
+      margin-top: 0.5rem;
+    }
+
+    .main p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 3rem;
+    }
+
+    .flow {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+    }
+    
+    .step-card {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 4px 16px rgba(42, 51, 230, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .step-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 22px rgba(42, 51, 230, 0.4);
+    }
+
+    .step-card h3 {
+      font-size: 1rem;
+      margin: 0.3rem 0 0.2rem;
+    }
+
+    .step-card p {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+
+    .arrow {
+      position: absolute;
+      width: 40px;
+      height: 4px;
+      background: #2400ff;
+      transform-origin: left center;
+    }
+
+    .arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -6px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid #2400ff;
+    }
+
+    /* Smaller sub-circles */
+    .step-card.sub-layer {
+      width: 120px;
+      height: 120px;
+      font-size: 0.9rem;
+    }
+
+    .step-card.sub-layer h3 {
+      font-size: 0.9rem;
+      margin: 0.2rem 0;
+    }
+
+    .step-card.sub-layer p {
+      font-size: 0.7rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+    <a href="index.html" class="logo-container">
+      <img src="SLlogo.png" alt="StegLens Logo" />
+      <span class="logo-text">StegLens</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="instructions.html">How It Works</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </nav>
+
+
+  <div id="main">
+    <div class="main">
+      <div class="tag">Simple Process</div>
+      <h1>How StegLens Works</h1>
+      <p>Our process is secure, simple, and completely private.</p>
+      <br><br><br>
+
+      <div class="flow">
+        <div class="step-card" style="top: 0%; left: 50%; transform: translate(-50%, -50%);">
+          <h3> 1 </h3>
+          <div>📝</div>
+          <h3>Create Your Message</h3>
+          <p>Write the secret text or info you want to hide securely.</p>
+        </div>
+        <div class="arrow" style="top: 3%; left: 70%; transform: rotate(35deg);"></div>
+
+        <div class="step-card" style="top: 20%; left: 90%; transform: translate(-50%, -50%);">
+          <h3> 2 </h3>
+          <div>🖼️</div>
+          <h3>Select an Image</h3>
+          <p>Choose any image (PNG, JPG, or GIF) to hide your message.</p>
+        </div>
+        <div class="arrow" style="top: 40%; left: 90%; transform: rotate(90deg);"></div>
+
+        <div class="step-card" style="top: 70%; left: 90%; transform: translate(-50%, -50%);">
+          <h3> 3 </h3>
+          <h3> 🔒 Choose Encryption Algorithm</h3>
+          <p>Select from <strong>AES-128</strong>, <strong>3DES</strong>, or no encryption.</p>
+        </div>
+        <div class="arrow" style="top: 80%; left: 75%; transform: rotate(135deg);"></div>
+
+        <div class="step-card" style="top: 90%; left: 50%; transform: translate(-50%, -50%);">
+          <h3> 4 </h3>
+          <div>🔁</div>
+          <h3>Multi-Layering</h3>
+          <p>Choose 1 to 3 layers to increase message depth and stealth.</p>
+        </div>
+        <!-- الأسهم الثلاثة -->
+        <div class="arrow" style="top: 104%; left: 43%; transform: rotate(125deg); width: 40px;"></div>
+        <div class="arrow" style="top: 107%; left: 50%; transform: rotate(90deg); width: 40px;"></div>
+        <div class="arrow" style="top: 104%; left: 57%; transform: rotate(50deg); width: 40px;"></div>
+
+        <!-- الدوائر الفرعية -->
+        <div class="step-card sub-layer" style="top: 115%; left: 25%; transform: translate(-50%, -50%);">
+          <h3>Layer 1</h3>
+          <h3> Basic concealment </h3>
+        </div>
+        <div class="step-card sub-layer" style="top: 129%; left: 50%; transform: translate(-50%, -50%);">
+          <h3>Layer 2</h3>
+          <h3> Moderate concealment </h3>
+        </div>
+        <div class="step-card sub-layer" style="top: 115%; left: 75%; transform: translate(-50%, -50%);">
+          <h3>Layer 3</h3>
+          <h3> High-level concealment </h3>
+        </div>
+        <div class="arrow" style="top: 85%; left: 30%; transform: rotate(220deg);"></div>
+
+        <div class="step-card" style="top: 70%; left: 10%; transform: translate(-50%, -50%);">
+          <h3> 5 </h3>
+          <div>📥</div>
+          <h3>Downloaded the Embedded Image</h3>
+          <p>Embed the message and download the new image.</p>
+        </div>
+        <div class="arrow" style="top: 47%; left: 5%; transform: rotate(270deg);"></div>
+
+        <div class="step-card" style="top: 20%; left: 10%; transform: translate(-50%, -50%);">
+          <h3> 6 </h3>
+          <div>🔓</div>
+          <h3>Decode </h3>
+          <p>Upload and extract your message with the correct key.</p>
+        </div>
+        <div class="arrow" style="top: 8%; left: 25%; transform: rotate(315deg);"></div>
+      </div>
+    </div>
+
+    
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+  <script>
+    function toggleNav() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("show");
+  }
+  </script>
+  <script>
+  function toggleNav() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("show");
+  }
+</script>
+</body>
+
+</html>
