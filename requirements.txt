@@ -3,6 +3,7 @@ Flask-Cors
 Pillow
 stegano
 pycryptodome
+pycryptodomex
 piexif
 gunicorn
 python-dotenv
